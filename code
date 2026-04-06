@@ -1,0 +1,14 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+df = pd.read_csv("2010_2021_HS2_export.csv")
+df.dropna(inplace=True)
+top_countries = df.groupby("country")["value"].sum().sort_values(ascending=False)
+yearly = df.groupby("year")["value"].sum()
+yearly.plot()
+plt.title("Year-wise Export Trend")
+plt.xlabel("Year")
+plt.ylabel("Export Value")
+plt.show()
+top_countries.head(10).plot(kind='bar')
+plt.title("Top Exporting Countries")
+plt.show()
